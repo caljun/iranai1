@@ -8,27 +8,28 @@ document.addEventListener("DOMContentLoaded", function () {
     let posts = JSON.parse(localStorage.getItem("posts")) || [];
 
     // **アイコン画像のロード**
-    const savedImage = localStorage.getItem("profileImage");
-    if (savedImage) {
-        profileIcon.src = savedImage;
+    if (profileIcon && localStorage.getItem("profileImage")) {
+        profileIcon.src = localStorage.getItem("profileImage");
     }
 
     // **アイコン画像のアップロード処理**
-    profileIcon.addEventListener("click", function () {
-        profileImageUpload.click();
-    });
+    if (profileIcon && profileImageUpload) {
+        profileIcon.addEventListener("click", function () {
+            profileImageUpload.click();
+        });
 
-    profileImageUpload.addEventListener("change", function (event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                profileIcon.src = e.target.result;
-                localStorage.setItem("profileImage", e.target.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    });
+        profileImageUpload.addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    profileIcon.src = e.target.result;
+                    localStorage.setItem("profileImage", e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
 
     // **投稿を表示する関数**
     function renderPosts() {
@@ -56,6 +57,14 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
 
+        // **「+」ボタンのイベントを動的に追加**
+        const addPostBtn = document.getElementById("addPostBtn");
+        if (addPostBtn) {
+            addPostBtn.addEventListener("click", function () {
+                openModal();
+            });
+        }
+
         // **投稿が1つ以上ならURLを表示**
         if (posts.length > 0) {
             profileUrl.style.display = "block";
@@ -63,11 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
             userUrl.href = `https://iranai.com/${localStorage.getItem("username")}`;
             userUrl.target = "_blank";
         }
-
-        // **「+」ボタンを再設定**
-        document.getElementById("addPostBtn").addEventListener("click", function () {
-            openModal();
-        });
     }
 
     // **投稿を追加**
