@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const addPostBtn = document.getElementById("addPostBtn");
     const gallery = document.querySelector(".gallery");
     const profileUrl = document.getElementById("profileUrl");
     const userUrl = document.getElementById("userUrl");
@@ -33,7 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // **投稿を表示する関数**
     function renderPosts() {
-        gallery.innerHTML = '<button id="addPostBtn" class="post-box">＋</button>';
+        gallery.innerHTML = `<button id="addPostBtn" class="post-box">＋</button>`;
+        
         posts.forEach((post, index) => {
             const postBox = document.createElement("div");
             postBox.classList.add("post-box");
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
             gallery.appendChild(postBox);
         });
 
-        // **削除ボタンのイベントリスナーを追加**
+        // **削除ボタンのイベントを追加**
         document.querySelectorAll(".delete-btn").forEach(button => {
             button.addEventListener("click", function () {
                 const index = this.getAttribute("data-index");
@@ -60,25 +60,29 @@ document.addEventListener("DOMContentLoaded", function () {
         if (posts.length > 0) {
             profileUrl.style.display = "block";
             userUrl.textContent = `iranai.com/${localStorage.getItem("username")}`;
-            userUrl.href = `https://iranai.com/${localStorage.getItem("username")}`; // **← クリック可能に**
-            userUrl.target = "_blank"; // **← 別タブで開く**
+            userUrl.href = `https://iranai.com/${localStorage.getItem("username")}`;
+            userUrl.target = "_blank";
         }
-    }
 
-    // **＋ボタンのクリックイベントを直接設定**
-    document.getElementById("addPostBtn").addEventListener("click", function () {
-        openModal();
-    });
+        // **「+」ボタンを再設定**
+        document.getElementById("addPostBtn").addEventListener("click", function () {
+            openModal();
+        });
+    }
 
     // **投稿を追加**
     function addPost(name, image) {
+        if (!name || !image) {
+            alert("名前と画像を入力してください！");
+            return;
+        }
         const newPost = { name, image };
         posts.push(newPost);
         localStorage.setItem("posts", JSON.stringify(posts));
         renderPosts();
     }
 
-    // **`window` に関数を登録（他のスクリプトから呼び出せるように）**
+    // **`window` に関数を登録**
     window.addPost = addPost;
 
     renderPosts();
