@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iranai - プロフィール</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 固定ヘッダー -->
+    <header class="fixed-header">
+        <h1>iranai</h1>
+    </header>
+
+    <br>
+    <br>
+
+    <div class="container">
+        <div class="profile-section">
+            <!-- プロフィールアイコン（クリックで画像アップロード） -->
+            <input type="file" id="profileImageUpload" style="display: none;">
+            <img id="profileIcon" src="default-icon.png" alt="プロフィールアイコン">
+            <p id="profileUrl" style="display: none;">あなたのURL: <span id="userUrl"></span></p>
+        </div>
+        
+        <div class="gallery">
+            <button id="addPostBtn" class="post-box">＋</button>
+        </div>
+    </div>
+
+    <script src="./scripts/profile.js"></script>
+    <script src="./scripts/modal.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const profileIcon = document.getElementById("profileIcon");
+            const profileImageUpload = document.getElementById("profileImageUpload");
+
+            // 以前の画像があればロード
+            const savedImage = localStorage.getItem("profileImage");
+            if (savedImage) {
+                profileIcon.src = savedImage;
+            }
+
+            // クリックで画像アップロード
+            profileIcon.addEventListener("click", function () {
+                profileImageUpload.click();
+            });
+
+            // 画像を選択したら変更
+            profileImageUpload.addEventListener("change", function (event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        profileIcon.src = e.target.result;
+                        localStorage.setItem("profileImage", e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
