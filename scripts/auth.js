@@ -12,8 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem("email", email);
             localStorage.setItem("password", password);
             localStorage.setItem("username", username);
-            
-            window.location.href = "profile.html";
+
+            // ユーザーごとのURLを生成
+            const userUrl = `https://iranai.com/${username}`;
+            localStorage.setItem("userUrl", userUrl);
+
+            // URLページに遷移する
+            window.location.href = `profile.html?user=${username}`;
         }
     });
 });
