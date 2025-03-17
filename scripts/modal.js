@@ -13,24 +13,24 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
     document.body.appendChild(modal);
 
-    const addPostBtn = document.getElementById("addPostBtn");
     const closeBtn = modal.querySelector(".close-btn");
     const submitPostBtn = modal.querySelector("#submitPost");
 
-    // モーダルを開く
+    // **モーダルを開く関数（スマホでも動作するように）**
     window.openModal = function () {
         modal.style.display = "block";
     };
 
-    // モーダルを閉じる
+    // **モーダルを閉じる**
     closeBtn.addEventListener("click", function () {
         modal.style.display = "none";
     });
 
-    // 投稿ボタンを押したら投稿を追加
+    // **投稿ボタンを押したら投稿を追加**
     submitPostBtn.addEventListener("click", function () {
         const name = document.getElementById("postName").value;
         const imageInput = document.getElementById("postImage");
+
         if (name && imageInput.files.length > 0) {
             const reader = new FileReader();
             reader.onload = function (e) {
@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // モーダルの外側をクリックしたら閉じる
-    window.addEventListener("click", function (event) {
+    // **スマホ対応: タッチでモーダルを閉じる**
+    window.addEventListener("touchstart", function (event) {
         if (event.target === modal) {
             modal.style.display = "none";
         }
