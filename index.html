@@ -21,11 +21,6 @@
             const savedEmail = localStorage.getItem("email");
             const username = localStorage.getItem("username");
 
-            // すでにアカウントがあるなら、直接プロフィールへ
-            if (savedEmail && username) {
-                window.location.href = `profile.html?user=${username}`;
-            }
-
             // スタートボタンの動作
             document.getElementById("startBtn").addEventListener("click", function() {
                 window.location.href = "register.html";
