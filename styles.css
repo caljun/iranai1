@@ -186,3 +186,29 @@ body {
 .modal-content button:hover {
     background-color: #333333;
 }
+
+/* index.html 専用のスタイル */
+.index-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* 画面中央に配置 */
+}
+
+/* スタートボタンのデザイン */
+.start-button {
+    font-size: 20px;
+    padding: 15px 40px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.start-button:hover {
+    background-color: #000;
+    color: #fff;
+    transform: scale(1.05);
+}
