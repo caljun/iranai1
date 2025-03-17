@@ -11,20 +11,14 @@
         <h1>iranai</h1>
     </header>
     <br>
-    <div class="container">
-        <h2>ようこそ、iranaiへ！</h2>
-        <button id="startBtn">スタート</button>
+    <div class="container index-container">
+        <button id="startBtn" class="start-button">スタート</button>
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const savedEmail = localStorage.getItem("email");
-            const username = localStorage.getItem("username");
-
-            // スタートボタンの動作
-            document.getElementById("startBtn").addEventListener("click", function() {
-                window.location.href = "register.html";
-            });
+        document.getElementById("startBtn").addEventListener("click", function() {
+            localStorage.clear();
+            window.location.href = "register.html";
         });
     </script>
 </body>
