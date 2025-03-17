@@ -7,6 +7,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let posts = JSON.parse(localStorage.getItem("posts")) || [];
 
+    // **ユーザーURLを取得し表示**
+    const storedUserUrl = localStorage.getItem("userUrl");
+    if (storedUserUrl) {
+        profileUrl.style.display = "block"; // URLを表示
+        userUrl.textContent = storedUserUrl;
+        userUrl.href = storedUserUrl;
+        userUrl.target = "_blank";
+    }
+
     // **プロフィール画像のロード**
     if (profileIcon && localStorage.getItem("profileImage")) {
         profileIcon.src = localStorage.getItem("profileImage");
