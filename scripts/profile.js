@@ -57,16 +57,28 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
 
-        // **「+」ボタンのイベントを確実に追加（スマホでも動作するように）**
+        // **「+」ボタンのイベントを確実に登録**
         const addPostBtn = document.getElementById("addPostBtn");
         if (addPostBtn) {
-            addPostBtn.addEventListener("click", openModal);
-            addPostBtn.addEventListener("touchstart", openModal); // スマホ用のタッチイベント対応
+            addPostBtn.addEventListener("click", function () {
+                if (window.openModal) {
+                    window.openModal();
+                } else {
+                    alert("モーダルを開く処理に失敗しました。");
+                }
+            });
+            addPostBtn.addEventListener("touchstart", function () {
+                if (window.openModal) {
+                    window.openModal();
+                } else {
+                    alert("モーダルを開く処理に失敗しました。");
+                }
+            });
         }
     }
 
     // **投稿を追加**
-    function addPost(name, image) {
+    window.addPost = function (name, image) {
         if (!name || !image) {
             alert("名前と画像を入力してください！");
             return;
@@ -75,10 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
         posts.push(newPost);
         localStorage.setItem("posts", JSON.stringify(posts));
         renderPosts();
-    }
-
-    // **関数をグローバルで使えるようにする**
-    window.addPost = addPost;
+    };
 
     // **初期表示**
     renderPosts();

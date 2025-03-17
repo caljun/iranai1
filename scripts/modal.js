@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const closeBtn = modal.querySelector(".close-btn");
     const submitPostBtn = modal.querySelector("#submitPost");
 
-    // **モーダルを開く関数（スマホでも動作するように）**
+    // **モーダルを開く関数（グローバル登録）**
     window.openModal = function () {
         modal.style.display = "block";
     };
@@ -34,8 +34,12 @@ document.addEventListener("DOMContentLoaded", function () {
         if (name && imageInput.files.length > 0) {
             const reader = new FileReader();
             reader.onload = function (e) {
-                addPost(name, e.target.result);
-                modal.style.display = "none";
+                if (window.addPost) {
+                    window.addPost(name, e.target.result);
+                    modal.style.display = "none";
+                } else {
+                    alert("投稿処理に失敗しました。");
+                }
             };
             reader.readAsDataURL(imageInput.files[0]);
         }
