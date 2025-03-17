@@ -13,24 +13,23 @@
     <br>
     <div class="container">
         <h2>ようこそ、iranaiへ！</h2>
-        <button id="registerBtn">アカウント登録</button>
-        <button id="loginBtn">ログイン</button>
+        <button id="startBtn">スタート</button>
     </div>
 
     <script>
-        document.getElementById("registerBtn").addEventListener("click", function() {
-            window.location.href = "register.html";
-        });
-
-        document.getElementById("loginBtn").addEventListener("click", function() {
+        document.addEventListener("DOMContentLoaded", function() {
             const savedEmail = localStorage.getItem("email");
             const username = localStorage.getItem("username");
 
+            // すでにアカウントがあるなら、直接プロフィールへ
             if (savedEmail && username) {
                 window.location.href = `profile.html?user=${username}`;
-            } else {
-                alert("アカウントが登録されていません。先にアカウント登録をしてください。");
             }
+
+            // スタートボタンの動作
+            document.getElementById("startBtn").addEventListener("click", function() {
+                window.location.href = "register.html";
+            });
         });
     </script>
 </body>
