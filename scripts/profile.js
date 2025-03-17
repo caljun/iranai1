@@ -86,6 +86,15 @@ document.addEventListener("DOMContentLoaded", function () {
         renderPosts();
     }
 
+    document.addEventListener("DOMContentLoaded", function () {
+        const addPostBtn = document.getElementById("addPostBtn");
+        if (addPostBtn) {
+            addPostBtn.addEventListener("click", function () {
+                openModal();
+            });
+        }
+    });
+
     // **`window` に関数を登録**
     window.addPost = addPost;
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iranai - プロフィール</title>
+    <title>iranai - ホーム</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,21 +11,27 @@
         <h1>iranai</h1>
     </header>
     <br>
-    <br>
     <div class="container">
-        <div class="profile-section">
-            <img id="profileIcon" src="custom-nike-dunk-high-by-you-shoes.png" alt="プロフィールアイコン">
-            <input type="file" id="profileImageUpload" style="display: none;">
-            <p id="profileUrl" style="display: none;">あなたのURL: <span id="userUrl"></span></p>
-        </div>
-        
-        <div class="gallery">
-            <button id="addPostBtn" class="post-box">＋</button>
-        </div>
+        <h2>ようこそ、iranaiへ！</h2>
+        <button id="registerBtn">アカウント登録</button>
+        <button id="loginBtn">ログイン</button>
     </div>
 
-    <script src="./scripts/profile.js"></script>
-    <script src="./scripts/modal.js"></script>
+    <script>
+        document.getElementById("registerBtn").addEventListener("click", function() {
+            window.location.href = "register.html";
+        });
 
+        document.getElementById("loginBtn").addEventListener("click", function() {
+            const savedEmail = localStorage.getItem("email");
+            const username = localStorage.getItem("username");
+
+            if (savedEmail && username) {
+                window.location.href = `profile.html?user=${username}`;
+            } else {
+                alert("アカウントが登録されていません。先にアカウント登録をしてください。");
+            }
+        });
+    </script>
 </body>
 </html>
