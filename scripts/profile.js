@@ -7,12 +7,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let posts = JSON.parse(localStorage.getItem("posts")) || [];
 
-    // **アイコン画像のロード**
+    // **プロフィール画像のロード**
     if (profileIcon && localStorage.getItem("profileImage")) {
         profileIcon.src = localStorage.getItem("profileImage");
     }
 
-    // **アイコン画像のアップロード処理**
+    // **プロフィール画像のアップロード処理**
     if (profileIcon && profileImageUpload) {
         profileIcon.addEventListener("click", function () {
             profileImageUpload.click();
@@ -57,20 +57,11 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
 
-        // **「+」ボタンのイベントを動的に追加**
+        // **「+」ボタンのイベントを確実に追加（スマホでも動作するように）**
         const addPostBtn = document.getElementById("addPostBtn");
         if (addPostBtn) {
-            addPostBtn.addEventListener("click", function () {
-                openModal();
-            });
-        }
-
-        // **投稿が1つ以上ならURLを表示**
-        if (posts.length > 0) {
-            profileUrl.style.display = "block";
-            userUrl.textContent = `iranai.com/${localStorage.getItem("username")}`;
-            userUrl.href = `https://iranai.com/${localStorage.getItem("username")}`;
-            userUrl.target = "_blank";
+            addPostBtn.addEventListener("click", openModal);
+            addPostBtn.addEventListener("touchstart", openModal); // スマホ用のタッチイベント対応
         }
     }
 
@@ -86,17 +77,9 @@ document.addEventListener("DOMContentLoaded", function () {
         renderPosts();
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-        const addPostBtn = document.getElementById("addPostBtn");
-        if (addPostBtn) {
-            addPostBtn.addEventListener("click", function () {
-                openModal();
-            });
-        }
-    });
-
-    // **`window` に関数を登録**
+    // **関数をグローバルで使えるようにする**
     window.addPost = addPost;
 
+    // **初期表示**
     renderPosts();
 });
