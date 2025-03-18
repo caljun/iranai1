@@ -231,6 +231,34 @@ body {
     cursor: pointer;
 }
 
+input[type="text"], input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #ddd; /* **枠を薄くする** */
+    border-radius: 5px;
+    font-size: 16px;
+    background: #f9f9f9; /* **薄いグレー背景で入力欄を目立たせる** */
+}
+input[type="text"]:focus {
+    border-color: #000; /* **フォーカス時に黒枠にして強調** */
+}
+
+#submitPost {
+    background: #000; /* **黒基調のデザイン** */
+    color: #fff; /* **文字は白でコントラストを強く** */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+#submitPost:hover {
+    background: #333; /* **ホバー時に少しグレーに変化** */
+    transform: scale(1.05); /* **少し大きくなって目立つ** */
+}
+
 /* index.html 専用のスタイル */
 .index-container {
     display: flex;
