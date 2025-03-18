@@ -66,7 +66,7 @@ body {
     align-items: center;
     justify-content: center;
     width: 320px;
-    height: 350px; /* 高さを統一 */
+    min-height: 350px; /* 高さを統一 */
     border: 2px solid #000000;
     border-radius: 15px;
     padding: 15px;
@@ -89,20 +89,19 @@ body {
 
 /* 📌 画像サイズを統一（はみ出し防止） */
 .post-box img {
-    max-width: 280px;
-    max-height: 200px;
-    object-fit: cover;
+    height: auto; 
+    max-width: 100%; 
+    object-fit: contain;
     border-radius: 10px;
 }
 
 /* 📌 ボタンデザイン */
 .want-btn,
 .delete-btn {
-    max-width: 250px;
-    max-height: 200px;
-    padding: 12px;
-    margin-top: 12px;
-    font-size: 16px;
+    max-height: none; /* ❌ これを削除 */
+    width: 90%;
+    padding: 10px;
+    margin-top: auto
 }
 
 /* 📌 スマホ対応（1〜2列に調整） */
