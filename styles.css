@@ -47,73 +47,89 @@ body {
     cursor: pointer;
 }
 
-/* 投稿一覧のグリッドレイアウト（サイト幅いっぱいに拡大） */
+/* 📌 投稿一覧のグリッドレイアウト（PCでは横3列固定・スマホでは1〜2列） */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* PCでは3列固定 */
-    gap: 15px;
+    grid-template-columns: repeat(3, 1fr); /* PCでは確実に3列固定 */
+    gap: 20px; /* 間隔を広げて被らないように */
     justify-content: center;
     align-items: start;
-    width: 90%;
-    max-width: 1200px; /* 画面いっぱいを使う */
+    width: 100%;
+    max-width: 1200px; /* PCで3列にするための最大幅 */
     margin: auto;
 }
 
-/* 「＋」ボタンのデザイン */
-.post-box:first-child {
-    font-size: 36px;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #eee;
-}
-
-/* 投稿カードのデザイン（サイズ拡大） */
+/* 📌 投稿カードのデザイン（サイズを明確に統一） */
 .post-box {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%; /* サイトいっぱいに広げる */
-    height: 300px; /* 投稿枠を大きく */
+    width: 300px;  /* **幅を固定（重要）** */
+    height: 350px; /* 高さを統一 */
     border: 2px solid #000000;
     border-radius: 15px;
     padding: 15px;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    box-sizing: border-box; /* 余白計算を統一 */
 }
 
-/* 画像サイズを調整 */
+/* 📌 「＋」ボタンのデザイン */
+.post-box:first-child {
+    font-size: 40px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ddd;
+    border: 2px dashed #000;
+}
+
+/* 📌 画像サイズを統一（はみ出し防止） */
 .post-box img {
     width: 90%;
-    height: 200px;
+    height: 220px;
     object-fit: cover;
     border-radius: 10px;
 }
 
-/* ボタンのデザイン */
+/* 📌 ボタンデザイン */
 .want-btn,
 .delete-btn {
-    width: 80%;
-    padding: 10px;
-    margin-top: 10px;
-    font-size: 14px;
+    width: 90%;
+    padding: 12px;
+    margin-top: 12px;
+    font-size: 16px;
 }
 
+/* 📌 スマホ対応（1〜2列に調整） */
 @media (max-width: 768px) {
     .gallery {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* スマホは1〜2列 */
+        grid-template-columns: repeat(2, minmax(180px, 1fr)); /* スマホでは2列 */
     }
     .post-box {
-        height: 250px; /* モバイルでも適したサイズに */
+        width: 100%; /* 幅を調整 */
+        height: 320px;
     }
     .post-box img {
-        height: 150px;
+        height: 180px;
     }
 }
 
+/* 📌 超小さい画面用（1列表示） */
+@media (max-width: 480px) {
+    .gallery {
+        grid-template-columns: repeat(1, 1fr); /* 小さいスマホは1列 */
+    }
+    .post-box {
+        height: 300px;
+    }
+    .post-box img {
+        height: 160px;
+    }
+}
 
 /* アカウント登録フォームのデザイン */
 .register-container {
