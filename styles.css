@@ -90,7 +90,7 @@ body {
 /* 📌 画像サイズを統一（はみ出し防止） */
 .post-box img {
     max-width: 280px;
-    height: 220px;
+    height: 200px;
     object-fit: cover;
     border-radius: 10px;
 }
@@ -99,6 +99,7 @@ body {
 .want-btn,
 .delete-btn {
     max-width: 250px;
+    height: 200px;
     padding: 12px;
     margin-top: 12px;
     font-size: 16px;
