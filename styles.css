@@ -47,18 +47,21 @@ body {
     cursor: pointer;
 }
 
-/* 投稿一覧のグリッドレイアウト */
+/* 投稿一覧のグリッドレイアウト（サイト幅いっぱいに拡大） */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* PCは3列、スマホは1～2列 */
-    gap: 10px;
-    justify-content: start; /* 左寄せ */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 投稿を大きく */
+    gap: 15px;
+    justify-content: center;
     align-items: start;
+    width: 90%;
+    max-width: 1200px; /* 最大幅を設定 */
+    margin: auto;
 }
 
 /* 「＋」ボタンのデザイン */
 .post-box:first-child {
-    font-size: 30px;
+    font-size: 36px;
     font-weight: bold;
     display: flex;
     justify-content: center;
@@ -66,61 +69,52 @@ body {
     background-color: #eee;
 }
 
-/* 投稿カードのデザイン */
+/* 投稿カードのデザイン（サイズ拡大） */
 .post-box {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 120px;
-    height: 150px;
+    width: 100%; /* サイトいっぱいに広げる */
+    height: 300px; /* 投稿枠を大きく */
     border: 2px solid #000000;
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 15px;
+    padding: 15px;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-/* スマホ対応 */
-@media (max-width: 768px) {
-    .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* 1列または2列 */
-    }
-    .post-box {
-        width: 100px;
-        height: 130px;
-    }
-}
-
+/* 画像サイズを調整 */
 .post-box img {
     width: 100%;
-    height: 80px;
+    height: 180px;
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
-.post-box p {
-    margin: 5px 0;
+/* ボタンのデザイン */
+.want-btn,
+.delete-btn {
+    width: 80%;
+    padding: 10px;
+    margin-top: 10px;
     font-size: 14px;
-    font-weight: bold;
 }
 
-.want-btn {
-    background-color: #000000;
-    color: #ffffff;
-    border: none;
-    padding: 5px 10px;
-    font-size: 12px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 5px;
-    transition: background 0.3s;
+/* スマホ対応（投稿をより大きく） */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* スマホでも大きめに */
+    }
+    .post-box {
+        height: 250px; /* モバイルでも適したサイズに */
+    }
+    .post-box img {
+        height: 150px;
+    }
 }
 
-.want-btn:hover {
-    background-color: #333333;
-}
 
 /* アカウント登録フォームのデザイン */
 .register-container {
