@@ -40,23 +40,36 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // **投稿を表示する関数**
     function renderPosts() {
-        gallery.innerHTML = `<button id="addPostBtn" class="post-box">＋</button>`;
-        
+        gallery.innerHTML = ""; // クリア
+    
+        // 「＋」ボタンを最初に追加（常に左端）
+        const addPostBtn = document.createElement("div");
+        addPostBtn.classList.add("post-box");
+        addPostBtn.textContent = "＋";
+        addPostBtn.addEventListener("click", function () {
+            if (window.openModal) {
+                window.openModal();
+            } else {
+                alert("モーダルを開く処理に失敗しました。");
+            }
+        });
+        gallery.appendChild(addPostBtn);
+    
+        // 投稿データを表示
         posts.forEach((post, index) => {
             const postBox = document.createElement("div");
             postBox.classList.add("post-box");
             postBox.innerHTML = `
-                <img src="${post.image}" alt="投稿画像" style="width:100%; height:80px; object-fit:cover;">
+                <img src="${post.image}" alt="投稿画像">
                 <p>${post.name}</p>
                 <button class="want-btn">欲しい</button>
                 <button class="delete-btn" data-index="${index}">削除</button>
             `;
             gallery.appendChild(postBox);
         });
-
-        // **削除ボタンのイベントを追加**
+    
+        // 削除機能
         document.querySelectorAll(".delete-btn").forEach(button => {
             button.addEventListener("click", function () {
                 const index = this.getAttribute("data-index");
@@ -65,26 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 renderPosts();
             });
         });
-
-        // **「+」ボタンのイベントを確実に登録**
-        const addPostBtn = document.getElementById("addPostBtn");
-        if (addPostBtn) {
-            addPostBtn.addEventListener("click", function () {
-                if (window.openModal) {
-                    window.openModal();
-                } else {
-                    alert("モーダルを開く処理に失敗しました。");
-                }
-            });
-            addPostBtn.addEventListener("touchstart", function () {
-                if (window.openModal) {
-                    window.openModal();
-                } else {
-                    alert("モーダルを開く処理に失敗しました。");
-                }
-            });
-        }
-    }
+    }    
 
     // **投稿を追加**
     window.addPost = function (name, image) {

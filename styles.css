@@ -47,29 +47,50 @@ body {
     cursor: pointer;
 }
 
-/* ギャラリー（投稿一覧） */
+/* 投稿一覧のグリッドレイアウト */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* PCは3列、スマホは1～2列 */
     gap: 10px;
-    margin-top: 20px;
+    justify-content: start; /* 左寄せ */
+    align-items: start;
 }
 
-/* 投稿カード（ちゃんとした枠を作る） */
+/* 「＋」ボタンのデザイン */
+.post-box:first-child {
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eee;
+}
+
+/* 投稿カードのデザイン */
 .post-box {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 150px;
-    height: 220px;
+    width: 120px;
+    height: 150px;
     border: 2px solid #000000;
     border-radius: 10px;
     padding: 10px;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background 0.3s;
     text-align: center;
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* 1列または2列 */
+    }
+    .post-box {
+        width: 100px;
+        height: 130px;
+    }
 }
 
 .post-box img {
