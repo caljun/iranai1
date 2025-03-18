@@ -65,7 +65,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 300px;  /* **幅を固定（重要）** */
+    max-width: 320px;
     height: 350px; /* 高さを統一 */
     border: 2px solid #000000;
     border-radius: 15px;
@@ -89,7 +89,7 @@ body {
 
 /* 📌 画像サイズを統一（はみ出し防止） */
 .post-box img {
-    width: 90%;
+    max-width: 280px;
     height: 220px;
     object-fit: cover;
     border-radius: 10px;
@@ -98,7 +98,7 @@ body {
 /* 📌 ボタンデザイン */
 .want-btn,
 .delete-btn {
-    width: 90%;
+    max-width: 250px;
     padding: 12px;
     margin-top: 12px;
     font-size: 16px;
