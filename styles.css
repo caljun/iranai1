@@ -107,27 +107,58 @@ body {
 /* 📌 スマホ対応（1〜2列に調整） */
 @media (max-width: 768px) {
     .gallery {
-        grid-template-columns: repeat(2, minmax(180px, 1fr)); /* スマホでは2列 */
+        grid-template-columns: repeat(2, minmax(200px, 1fr)); /* **投稿を少し大きく** */
     }
+
+    /* 「＋」ボタンを小さく */
+    .post-box:first-child {
+        font-size: 20px;
+        width: 60px;
+        height: 60px;
+    }
+
+    /* 投稿の枠を調整 */
     .post-box {
-        width: 100%; /* 幅を調整 */
-        height: 320px;
+        width: 100%;
+        height: 350px; /* **少し大きくする** */
     }
+
+    /* 「欲しい」ボタンを大きくする */
+    .want-btn {
+        width: 100%;
+        max-width: 220px;
+        font-size: 18px;
+        padding: 14px;
+    }
+
+    /* **投稿画像をスマホで大きくする** */
     .post-box img {
-        height: 180px;
+        width: 100%;
+        height: auto;
+        max-height: 250px; /* **スマホで高さを増やす** */
+        object-fit: cover;
     }
 }
 
 /* 📌 超小さい画面用（1列表示） */
 @media (max-width: 480px) {
     .gallery {
-        grid-template-columns: repeat(1, 1fr); /* 小さいスマホは1列 */
+        grid-template-columns: repeat(1, 1fr);
     }
+
+    /* 「＋」ボタンをさらに小さく */
+    .post-box:first-child {
+        font-size: 18px;
+        width: 50px;
+        height: 50px;
+    }
+
     .post-box {
-        height: 300px;
+        height: 320px;
     }
+
     .post-box img {
-        height: 160px;
+        max-height: 280px; /* **さらに写真を大きく** */
     }
 }
 
@@ -189,7 +220,7 @@ body {
     background-color: #cc0000;
 }
 
-/* 📌 投稿フォームのモーダル（確実に中央配置 & 画面の4分の3サイズ） */
+/* 投稿フォームのモーダル（確実に中央配置 & 画面の4分の3サイズ） */
 #postModal {
     display: none; /* 最初は非表示 */
     position: fixed;
@@ -209,7 +240,7 @@ body {
     justify-content: center;
 }
 
-/* 📌 モーダルの中身 */
+/* モーダルの中身 */
 .modal-content {
     width: 90%;
     height: 90%;
@@ -222,7 +253,7 @@ body {
     border-radius: 10px;
 }
 
-/* 📌 閉じるボタン */
+/* 閉じるボタン */
 .close-btn {
     position: absolute;
     top: 10px;
