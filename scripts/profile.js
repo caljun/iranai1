@@ -26,8 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (profileIcon && profileImageUpload) {
         profileIcon.addEventListener("click", function () {
             profileImageUpload.click();
-            }
-        )};
+        });
 
         profileImageUpload.addEventListener("change", function (event) {
             const file = event.target.files[0];
@@ -40,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 reader.readAsDataURL(file);
             }
         });
+    }
 
     function renderPosts() {
         gallery.innerHTML = `<button id="addPostBtn" class="post-box">＋</button>`; // **「＋」ボタンを常に残す**
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         alert("モーダルを開く処理に失敗しました。");
                     }
                 });
-        
+
                 // 📌 スマホ用のタッチイベントを追加
                 addPostBtn.addEventListener("touchstart", function () {
                     if (window.openModal) {
@@ -88,23 +88,27 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             }
         }, 100); // **非同期で確実にイベントが登録されるようにする**
-        
+    }
+
+    // **投稿を追加**
     window.addPost = function (name, image) {
         if (!name || !image) {
             alert("名前と画像を入力してください！");
             return;
         }
-    
+
         // 📌 最新の投稿データを確実に取得
-        let posts = JSON.parse(localStorage.getItem("posts")) || [];
+        posts = JSON.parse(localStorage.getItem("posts")) || []; // **← スコープの問題を修正**
         const newPost = { name, image };
         posts.push(newPost);
-    
+
         // 📌 ローカルストレージを更新
         localStorage.setItem("posts", JSON.stringify(posts));
-    
+
         // 📌 最新のデータを使って再描画
         renderPosts();
     };
-    
-}});
+
+    // **初期表示**
+    renderPosts();
+});
