@@ -82,24 +82,21 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 100); // **非同期で確実にイベントが登録されるようにする**
     }
 
-    // **投稿を追加**
     window.addPost = function (name, image) {
         if (!name || !image) {
             alert("名前と画像を入力してください！");
             return;
         }
+    
+        // **最新の投稿データを取得**
+        let posts = JSON.parse(localStorage.getItem("posts")) || [];
         const newPost = { name, image };
-
-        // **最新の投稿データを取得（グローバルの `posts` を更新）**
         posts.push(newPost);
-
+    
         // **ローカルストレージを更新**
         localStorage.setItem("posts", JSON.stringify(posts));
-
-        // **投稿を再描画**
+    
+        // **最新のデータを使って再描画**
         renderPosts();
-    };
-
-    // **初期表示**
-    renderPosts();
+    }
 });
