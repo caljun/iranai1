@@ -107,7 +107,9 @@ body {
 /* 📌 スマホ対応（1〜2列に調整） */
 @media (max-width: 768px) {
     .gallery {
-        grid-template-columns: repeat(1, 1fr); /* **投稿を均等に並べる** */
+        display: flex; /* **フレックスボックスで1列ずつ表示** */
+        flex-direction: column;
+        align-items: center;
     }
 
     /* 「＋」ボタンの大きさと位置修正 */
@@ -118,7 +120,7 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 0; /* **ズレを防ぐ** */
+        margin-bottom: 10px;
     }
 
     /* **投稿の枠を修正（幅を適切に戻す）** */
