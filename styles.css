@@ -115,7 +115,7 @@ body {
     /* 「＋」ボタンの大きさと位置修正 */
     .post-box:first-child {
         font-size: 32px; /* **サイズを適切に調整** */
-        width: 80px; /* **小さすぎたので少し大きく** */
+        width: 200px; /* **小さすぎたので少し大きく** */
         height: 80px;
         display: flex;
         justify-content: center;
