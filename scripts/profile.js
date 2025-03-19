@@ -16,12 +16,13 @@ document.addEventListener("DOMContentLoaded", function () {
         userUrl.target = "_blank";
     }
 
-    // **プロフィール画像のロード**
-    if (profileIcon && localStorage.getItem("profileImage")) {
-        profileIcon.src = localStorage.getItem("profileImage");
+    // **ローカルストレージの画像をロード**
+    const savedImage = localStorage.getItem("profileImage");
+    if (profileIcon && savedImage) {
+        profileIcon.src = savedImage;
     }
 
-    // **プロフィール画像のアップロード処理**
+    // **クリックで画像アップロード**
     if (profileIcon && profileImageUpload) {
         profileIcon.addEventListener("click", function () {
             profileImageUpload.click();
@@ -88,8 +89,14 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
         const newPost = { name, image };
+
+        // **最新の投稿データを取得（グローバルの `posts` を更新）**
         posts.push(newPost);
+
+        // **ローカルストレージを更新**
         localStorage.setItem("posts", JSON.stringify(posts));
+
+        // **投稿を再描画**
         renderPosts();
     };
 
