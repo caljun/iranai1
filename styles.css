@@ -107,35 +107,39 @@ body {
 /* 📌 スマホ対応（1〜2列に調整） */
 @media (max-width: 768px) {
     .gallery {
-        grid-template-columns: repeat(2, minmax(200px, 1fr)); /* **投稿を少し大きく** */
+        grid-template-columns: repeat(2, 1fr); /* **投稿を均等に並べる** */
     }
 
-    /* 「＋」ボタンを小さく */
+    /* 「＋」ボタンの大きさと位置修正 */
     .post-box:first-child {
-        font-size: 40px;
-        width: 60px;
-        height: 60px;
+        font-size: 32px; /* **サイズを適切に調整** */
+        width: 80px; /* **小さすぎたので少し大きく** */
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0; /* **ズレを防ぐ** */
     }
 
-    /* 投稿の枠を調整 */
+    /* **投稿の枠を修正（幅を適切に戻す）** */
     .post-box {
-        width: 250%;
-        height: 250px; /* **少し大きくする** */
+        width: 100%; /* **250% → 100% に修正** */
+        height: 200px; /* **高さを適切に調整** */
     }
 
-    /* 「欲しい」ボタンを大きくする */
+    /* **「欲しい」ボタンを適切なサイズに修正** */
     .want-btn {
         width: 100%;
-        max-width: 220px;
-        font-size: 18px;
-        padding: 14px;
+        max-width: 200px;
+        font-size: 16px;
+        padding: 12px;
     }
 
-    /* **投稿画像をスマホで大きくする** */
+    /* **投稿画像のサイズを修正** */
     .post-box img {
-        width: auto;
+        width: 100%;
         height: auto;
-        max-height: 180px; /* **スマホで高さを増やす** */
+        max-height: 180px; /* **画像の高さを適切にする** */
         object-fit: cover;
     }
 }
