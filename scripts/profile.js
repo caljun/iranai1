@@ -41,22 +41,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function renderPosts() {
-        gallery.innerHTML = ""; // クリア
-    
-        // 「＋」ボタンを最初に追加（常に左端）
-        const addPostBtn = document.createElement("div");
-        addPostBtn.classList.add("post-box");
-        addPostBtn.textContent = "＋";
-        addPostBtn.addEventListener("click", function () {
-            if (window.openModal) {
-                window.openModal();
-            } else {
-                alert("モーダルを開く処理に失敗しました。");
-            }
-        });
-        gallery.appendChild(addPostBtn);
-    
-        // 投稿データを表示
+        gallery.innerHTML = `<button id="addPostBtn" class="post-box">＋</button>`; // **「＋」ボタンを常に残す**
+
+        // **投稿データを表示**
         posts.forEach((post, index) => {
             const postBox = document.createElement("div");
             postBox.classList.add("post-box");
@@ -68,8 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
             gallery.appendChild(postBox);
         });
-    
-        // 削除機能
+
+        // **削除機能**
         document.querySelectorAll(".delete-btn").forEach(button => {
             button.addEventListener("click", function () {
                 const index = this.getAttribute("data-index");
@@ -78,7 +65,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 renderPosts();
             });
         });
-    }    
+
+        // **「＋」ボタンのイベントを確実に登録**
+        setTimeout(() => {
+            const addPostBtn = document.getElementById("addPostBtn");
+            if (addPostBtn) {
+                addPostBtn.addEventListener("click", function () {
+                    if (window.openModal) {
+                        window.openModal();
+                    } else {
+                        alert("モーダルを開く処理に失敗しました。");
+                    }
+                });
+            }
+        }, 100); // **非同期で確実にイベントが登録されるようにする**
+    }
 
     // **投稿を追加**
     window.addPost = function (name, image) {
