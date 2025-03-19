@@ -26,7 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (profileIcon && profileImageUpload) {
         profileIcon.addEventListener("click", function () {
             profileImageUpload.click();
-        });
+            }
+        )};
 
         profileImageUpload.addEventListener("change", function (event) {
             const file = event.target.files[0];
@@ -39,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 reader.readAsDataURL(file);
             }
         });
-    }
 
     function renderPosts() {
         gallery.innerHTML = `<button id="addPostBtn" class="post-box">＋</button>`; // **「＋」ボタンを常に残す**
@@ -67,7 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
 
-        // **「＋」ボタンのイベントを確実に登録**
         setTimeout(() => {
             const addPostBtn = document.getElementById("addPostBtn");
             if (addPostBtn) {
@@ -78,25 +77,34 @@ document.addEventListener("DOMContentLoaded", function () {
                         alert("モーダルを開く処理に失敗しました。");
                     }
                 });
+        
+                // 📌 スマホ用のタッチイベントを追加
+                addPostBtn.addEventListener("touchstart", function () {
+                    if (window.openModal) {
+                        window.openModal();
+                    } else {
+                        alert("モーダルを開く処理に失敗しました。");
+                    }
+                });
             }
         }, 100); // **非同期で確実にイベントが登録されるようにする**
-    }
-
+        
     window.addPost = function (name, image) {
         if (!name || !image) {
             alert("名前と画像を入力してください！");
             return;
         }
     
-        // **最新の投稿データを取得**
+        // 📌 最新の投稿データを確実に取得
         let posts = JSON.parse(localStorage.getItem("posts")) || [];
         const newPost = { name, image };
         posts.push(newPost);
     
-        // **ローカルストレージを更新**
+        // 📌 ローカルストレージを更新
         localStorage.setItem("posts", JSON.stringify(posts));
     
-        // **最新のデータを使って再描画**
+        // 📌 最新のデータを使って再描画
         renderPosts();
-    }
-});
+    };
+    
+}});
