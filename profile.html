@@ -17,11 +17,13 @@
 
     <div class="container">
         <div class="profile-section">
-            <!-- プロフィールアイコン（クリックで画像アップロード） -->
-            <input type="file" id="profileImageUpload" style="display: none;">
-            <img id="profileIcon" src="" alt="プロフィールアイコン">
+            <!-- 📌 imgをlabelでラップすることでスマホ対応 -->
+            <label for="profileImageUpload">
+                <img id="profileIcon" src="" alt="プロフィールアイコン">
+            </label>
+            <input type="file" id="profileImageUpload" style="display: none;" accept="image/*">
             <p id="profileUrl">あなたのURL: <a id="userUrl" href="#" target="_blank"></a></p>
-        </div>
+        </div>        
 
         <!-- 投稿一覧 -->
         <div class="gallery">
