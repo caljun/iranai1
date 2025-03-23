@@ -22,10 +22,16 @@
             <img id="profileIcon" src="" alt="プロフィールアイコン">
             <p id="profileUrl">あなたのURL: <a id="userUrl" href="#" target="_blank"></a></p>
         </div>
-        
+
+        <!-- 投稿一覧 -->
         <div class="gallery">
-            <button id="addPostBtn" class="post-box">＋</button>
+            <!-- 投稿カードがここに入ります -->
         </div>
+    </div>
+
+    <!-- 📌 フローティング投稿ボタン（containerの外） -->
+    <div class="fab-container">
+        <button id="fabAddPost">＋</button>
     </div>
 
     <script src="./scripts/profile.js"></script>
@@ -58,6 +64,16 @@
                     reader.readAsDataURL(file);
                 }
             });
+
+            // フローティングボタンでモーダル表示
+            const fabBtn = document.getElementById("fabAddPost");
+            if (fabBtn) {
+                fabBtn.addEventListener("click", function () {
+                    if (window.openModal) {
+                        window.openModal();
+                    }
+                });
+            }
         });
     </script>
 </body>

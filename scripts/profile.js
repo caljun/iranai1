@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function renderPosts() {
-        gallery.innerHTML = `<button id="addPostBtn" class="post-box">＋</button>`; // **「＋」ボタンを常に残す**
+        gallery.innerHTML = ""; // **「＋」ボタンを常に残す**
 
         // **投稿データを表示**
         posts.forEach((post, index) => {
@@ -66,28 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 renderPosts();
             });
         });
-
-        setTimeout(() => {
-            const addPostBtn = document.getElementById("addPostBtn");
-            if (addPostBtn) {
-                addPostBtn.addEventListener("click", function () {
-                    if (window.openModal) {
-                        window.openModal();
-                    } else {
-                        alert("モーダルを開く処理に失敗しました。");
-                    }
-                });
-
-                // 📌 スマホ用のタッチイベントを追加
-                addPostBtn.addEventListener("touchstart", function () {
-                    if (window.openModal) {
-                        window.openModal();
-                    } else {
-                        alert("モーダルを開く処理に失敗しました。");
-                    }
-                });
-            }
-        }, 100); // **非同期で確実にイベントが登録されるようにする**
     }
 
     // **投稿を追加**
@@ -108,6 +86,23 @@ document.addEventListener("DOMContentLoaded", function () {
         // 📌 最新のデータを使って再描画
         renderPosts();
     };
+        // 📌 右下のフローティング「＋」ボタンにモーダル起動を紐づける
+        const fabBtn = document.getElementById("fabAddPost");
+        if (fabBtn) {
+            fabBtn.addEventListener("click", function () {
+                if (window.openModal) {
+                    window.openModal();
+                } else {
+                    alert("モーダルが開けませんでした");
+                }
+            });
+    
+            fabBtn.addEventListener("touchstart", function () {
+                if (window.openModal) {
+                    window.openModal();
+                }
+            });
+        }    
 
     // **初期表示**
     renderPosts();
