@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // **クリックで画像アップロード**
     if (profileIcon && profileImageUpload) {
-        profileIcon.addEventListener("click", function () {
+        profileIcon.addEventListener("touchstart", function () {
             profileImageUpload.click();
         });
 
