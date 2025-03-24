@@ -28,6 +28,10 @@ document.addEventListener("DOMContentLoaded", function () {
             profileImageUpload.click();
         });
 
+        profileIcon.addEventListener("click", function(){
+            profileImageUpload.click();
+        });
+
         profileImageUpload.addEventListener("change", function (event) {
             const file = event.target.files[0];
             if (file) {

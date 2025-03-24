@@ -53,7 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // 📌 **投稿後にフォームをリセット**
                     document.getElementById("postName").value = "";
-                    document.getElementById("postImage").value = "";
+                    const oldInput = document.getElementById("postImage");
+                    const newInput = oldInput.cloneNode(true);
+                    oldInput.parentNode.replaceChild(newInput, oldInput);
                 } else {
                     alert("投稿処理に失敗しました。");
                 }
