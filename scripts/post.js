@@ -13,7 +13,7 @@ const likeBtn = document.querySelector(".like-btn");
 let liked = false;
 likeBtn.addEventListener("click", () => {
   liked = !liked;
-  likeBtn.textContent = liked ? "♥ いいね" : "♡ いいね";
+  likeBtn.textContent = liked ? "♥" : "♡";
 });
 
 // コメント
