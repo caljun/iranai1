@@ -46,31 +46,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function renderPosts() {
-        gallery.innerHTML = ""; // **「＋」ボタンを常に残す**
-
-        // **投稿データを表示**
+        gallery.innerHTML = "";
+    
         posts.forEach((post, index) => {
             const postBox = document.createElement("div");
             postBox.classList.add("post-box");
+    
+            // ✅ 画像だけ表示
             postBox.innerHTML = `
                 <img src="${post.image}" alt="投稿画像">
-                <p>${post.name}</p>
-                <button class="want-btn">欲しい</button>
-                <button class="delete-btn" data-index="${index}">削除</button>
             `;
+    
             gallery.appendChild(postBox);
         });
-
-        // **削除機能**
-        document.querySelectorAll(".delete-btn").forEach(button => {
-            button.addEventListener("click", function () {
-                const index = this.getAttribute("data-index");
-                posts.splice(index, 1);
-                localStorage.setItem("posts", JSON.stringify(posts));
-                renderPosts();
-            });
-        });
-    }
+    }    
 
     // **投稿を追加**
     window.addPost = function (name, image) {

@@ -1,0 +1,31 @@
+<!-- post.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>投稿詳細</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="post-detail">
+    <img id="detailImage" src="" alt="投稿画像">
+    <p id="postCaption"></p>
+    <div class="like-btn">♡ いいね</div>
+    <div class="comment-section">
+      <input type="text" id="commentInput" placeholder="コメントを書く...">
+      <button id="submitComment">送信</button>
+      <ul id="commentList"></ul>
+    </div>
+  </div>
+
+  <script>
+    const index = new URLSearchParams(location.search).get("index");
+    const posts = JSON.parse(localStorage.getItem("posts")) || [];
+    const post = posts[index];
+
+    document.getElementById("detailImage").src = post.image;
+    document.getElementById("postCaption").textContent = post.name;
+  </script>
+</body>
+</html>
