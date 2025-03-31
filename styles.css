@@ -87,7 +87,7 @@ body {
         display: grid;
         grid-template-columns: repeat(2, 1fr); /* ← これをflex → gridに戻す */
         gap: 8px;
-        padding: 10px;
+        padding: 10px 0;
     }
 
     .post-box {
