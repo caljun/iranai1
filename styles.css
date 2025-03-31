@@ -99,22 +99,25 @@ body {
     .gallery {
         display: grid;
         grid-template-columns: repeat(2, 1fr); /* ← これをflex → gridに戻す */
-        gap: 10px;
+        gap: 8px;
         padding: 10px;
     }
 
     .post-box {
-        width: 100%;
-        height: auto;
-        padding: 5px;
-        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        background: none;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
     }
 
     .post-box img {
         width: 100%;
-        height: auto;
+        aspect-ratio: 1 / 1;
         object-fit: cover;
-        border-radius: 10px;
+        display: block;
+        border-radius: 6px;
     }
 
     .post-box p,
@@ -339,14 +342,15 @@ label[for="profileImageUpload"] {
     max-height: 400px;
     object-fit: contain;
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 #postCaption {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 500;
     margin-bottom: 10px;
     width: 100%;
+    text-align: left;
 }
 
 .like-btn {
