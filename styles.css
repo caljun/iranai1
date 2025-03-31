@@ -167,23 +167,6 @@ body {
     background-color: #333333;
 }
 
-/* 削除ボタンのデザイン */
-.delete-btn {
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    border: 1px solid #000000;
-    padding: 5px 10px;
-    font-size: 12px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 5px;
-    transition: background 0.3s;
-}
-
-.delete-btn:hover {
-    background-color: #cc0000;
-}
-
 /* 投稿フォームのモーダル（確実に中央配置 & 画面の4分の3サイズ） */
 #postModal {
     display: none; /* 最初は非表示 */
@@ -423,4 +406,16 @@ label[for="profileImageUpload"] {
     color: #000;
     z-index: 999;
   }
+
+  .delete-btn {
+    font-size: 14px;
+    padding: 6px 14px;
+    background-color: #ff5c5c;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
   

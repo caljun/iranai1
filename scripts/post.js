@@ -43,3 +43,14 @@ submitComment.addEventListener("click", () => {
     commentInput.value = "";
   }
 });
+
+// ✅ 投稿削除機能
+const deleteBtn = document.getElementById("deletePostBtn");
+
+deleteBtn.addEventListener("click", () => {
+  if (confirm("本当にこの投稿を削除しますか？")) {
+    posts.splice(index, 1);
+    localStorage.setItem("posts", JSON.stringify(posts));
+    window.location.href = "profile.html";
+  }
+});
