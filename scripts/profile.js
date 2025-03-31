@@ -52,14 +52,20 @@ document.addEventListener("DOMContentLoaded", function () {
             const postBox = document.createElement("div");
             postBox.classList.add("post-box");
     
-            // ✅ 画像だけ表示
+            // 画像だけ表示
             postBox.innerHTML = `
                 <img src="${post.image}" alt="投稿画像">
             `;
     
+            // 📌 画像クリックで詳細ページへ飛ばす
+            postBox.querySelector("img").addEventListener("click", () => {
+                window.location.href = `post.html?index=${index}`;
+            });
+    
             gallery.appendChild(postBox);
         });
-    }    
+    }
+      
 
     // **投稿を追加**
     window.addPost = function (name, image) {
