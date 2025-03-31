@@ -350,16 +350,6 @@ label[for="profileImageUpload"] {
     text-align: left;
 }
 
-.want-btn,
-.like-btn {
-  font-size: 18px;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 20px;
-  background-color: #f0f0f0;
-  cursor: pointer;
-}
-
 .comment-section {
     width: 100%;
     margin-top: 10px;
@@ -403,10 +393,21 @@ label[for="profileImageUpload"] {
 .action-row {
     display: flex;
     justify-content: flex-end;
-    gap: 12px;
+    gap: 10px;
     width: 100%;
-    margin-bottom: 12px;
-  }
+    margin-bottom: 16px;
+}
+
+.want-btn,
+.like-btn {
+    font-size: 16px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    width: auto;
+}
 
   .want-btn:hover,
   .like-btn:hover {
