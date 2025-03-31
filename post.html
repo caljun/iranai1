@@ -24,15 +24,6 @@
     </div>
     <button id="deletePostBtn" class="delete-btn">削除</button>
   </div>
-
-  <script>
-    const index = new URLSearchParams(location.search).get("index");
-    const posts = JSON.parse(localStorage.getItem("posts")) || [];
-    const post = posts[index];
-
-    document.getElementById("detailImage").src = post.image;
-    document.getElementById("postCaption").textContent = post.name;
-  </script>
     <script src ="scripts/post.js"></script>
 </body>
 </html>
