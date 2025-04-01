@@ -104,8 +104,7 @@ body {
         display: block;
     }    
 
-    .post-box p,
-    .delete-btn {
+    .post-box p {
         display: none;
     }
 
