@@ -320,12 +320,14 @@ label[for="profileImageUpload"] {
 
 .comment-section {
     width: 100%;
-    margin-top: 10px;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 #commentInput {
     width: 100%;
-    padding: 10px;
+    max-width: 100%;
+    box-sizing: border-box;
     border: 1px solid #ddd;
     border-radius: 5px;
     margin-bottom: 10px;
