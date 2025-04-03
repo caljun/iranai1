@@ -1,24 +1,36 @@
 document.addEventListener("DOMContentLoaded", function () {
     const registerForm = document.getElementById("registerForm");
 
-    registerForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-        const username = email.split("@")[0]; // 仮のユーザー名（メールの@前部分）
-        
-        if (email && password) {
-            localStorage.setItem("email", email);
-            localStorage.setItem("password", password);
-            localStorage.setItem("username", username);
+    if (registerForm) {
+        registerForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+            
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const username = email.split("@")[0]; // 仮のユーザー名
 
-            // ユーザーごとのURLを生成
-            const userUrl = `https://iranai.com/${username}`;
-            localStorage.setItem("userUrl", userUrl);
+            try {
+                const res = await fetch("http://localhost:3000/register", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password })
+                });
 
-            // URLページに遷移する
-            window.location.href = `profile.html?user=${username}`;
-        }
-    });
+                const data = await res.json();
+
+                if (res.ok) {
+                    localStorage.setItem("token", data.token); // ← JWTを保存
+                    localStorage.setItem("username", username);
+                    const userUrl = `https://iranai.com/${username}`;
+                    localStorage.setItem("userUrl", userUrl);
+
+                    window.location.href = `profile.html?user=${username}`;
+                } else {
+                    alert(data.error || "登録に失敗しました");
+                }
+            } catch (err) {
+                alert("サーバーに接続できませんでした");
+            }
+        });
+    }
 });
